@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Edit Book</h3>
+  <form method="post" action="{{ url_for('edit_book', book_id=book.id) }}" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input class="form-control" type="text" name="title" value="{{ book.title }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input class="form-control" type="text" name="author" value="{{ book.author }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Year (optional)</label>
+      <input class="form-control" type="number" name="year" value="{{ book.year }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Front Image</label>
+      {% if book.front_image %}
+        <div class="mb-2"><img src="{{ url_for('static', filename='uploads/' + book.front_image) }}" width="100"></div>
+      {% endif %}
+      <input class="form-control" type="file" name="front_image" accept="image/*">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Back Image</label>
+      {% if book.back_image %}
+        <div class="mb-2"><img src="{{ url_for('static', filename='uploads/' + book.back_image) }}" width="100"></div>
+      {% endif %}
+      <input class="form-control" type="file" name="back_image" accept="image/*">
+    </div>
+    <button class="btn btn-primary" type="submit">Save Changes</button>
+    <a class="btn btn-secondary" href="{{ url_for('index') }}">Cancel</a>
+  </form>
+{% endblock %}
