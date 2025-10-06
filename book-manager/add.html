@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Add Book</h3>
+  <form method="post" action="{{ url_for('add_book') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input class="form-control" type="text" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input class="form-control" type="text" name="author" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Year (optional)</label>
+      <input class="form-control" type="number" name="year">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Front Image</label>
+      <input class="form-control" type="file" name="front_image" accept="image/*">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Back Image</label>
+      <input class="form-control" type="file" name="back_image" accept="image/*">
+    </div>
+    <button class="btn btn-success" type="submit">Add Book</button>
+    <a class="btn btn-secondary" href="{{ url_for('index') }}">Cancel</a>
+  </form>
+{% endblock %}
